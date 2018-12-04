@@ -1,0 +1,117 @@
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Concert+One|Monoton" rel="stylesheet">
+    <!--<link rel="stylesheet" type="text/css" href="style.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class = "mainBody">
+      <h1>My to-do List</h1>
+      <form>
+          <input type="text" id="task" placeholder="Daily task list...">
+          <button type="button" id="addBtn">Add Task</button>
+          <button type="button" id="fetchBtn">Fetch Tasks</button>
+          <input type="text" id="index" placeholder="Task number here...">
+          <input type="text" id="item" placeholder="Task name here...">
+          <button type="button" id="updateBtn">Update Task</button>
+          <!--input type="text" id="deleteIndex" placeholder="Task name here..."-->
+          <!--button type="button" id="deleteBtn">Delete Task</button-->
+        </form>
+
+    </div>
+    <!--An unordered list element that holds all tasks-->
+    <ul id="unorderlist"></ul>
+
+    <script type=text/javascript>
+
+    	$(document).ready(function() {
+    	var close = document.getElementsByClassName("close");
+    var i = 0;
+        $('#addBtn').click(function() {
+        	var task = $('input[id="task"]').val();
+        	$.ajax({
+    				type : "POST",
+    				url : "/todo/create",
+    				data: JSON.stringify( task ),
+            contentType: 'application/json',
+    				success: function(result) {
+        				console.log(result['result']);
+        				var ul = document.getElementById("unorderlist"); //append the task to the ul
+        				var li = document.createElement("li");
+							//	var length = ul.getElementsByTagName("li").length+1;
+  						//	li.appendChild(document.createTextNode(length+". " + result['task']));
+  						  li.appendChild(document.createTextNode(result['task']));
+  							ul.appendChild(li);
+  							var span = document.createElement("SPAN");
+								var txt = document.createTextNode("\u00D7");
+  							span.className = "close";
+ 								span.appendChild(txt);
+  							li.appendChild(span);
+  							var close = document.getElementsByClassName("close");
+   						  var i = 0;
+  							for (i = 0; i < close.length; i++) {
+    							close[i].onclick = function(){
+    								index = $('.close').index(this)
+    								deleteTask(index);
+    							}
+    							}
+    					
+				    }
+          });
+        });
+
+        $('#fetchBtn').click(function() {
+        	$.ajax({
+    				type : "GET",
+    				url : "/todo/read",
+    				success: function(result) {
+        				console.log(result['task']);
+				    }
+          });
+        });
+
+        $('#updateBtn').click(function() {
+        	var task = $('input[id="item"]').val();
+        	var index = $('input[id="index"]').val();
+        	$.ajax({
+    				type : "PUT",
+    				url : "/todo/update",
+    				data: JSON.stringify({"task":task, "index":index}),
+            contentType: 'application/json',
+    				success: function(result) {
+        			console.log(result);
+        			var ul = document.getElementById("unorderlist");
+							var items = ul.getElementsByTagName("li");
+							var li = items[Number(index)-1];
+							li.replaceChild(document.createTextNode(task), li.childNodes[0]);
+						//	li.appendChild(document.createTextNode(index+". "+task));
+				    }
+          });
+        });
+
+        //this is for delete item
+        function deleteTask(index) {
+          var close = document.getElementsByClassName("close");
+        	var deleteIndex = index;
+        	$.ajax({
+    				type : "DELETE",
+    				url : "/todo/delete",
+    				data: JSON.stringify(deleteIndex),
+            contentType: 'application/json',
+    				success: function(result) {
+        			console.log(result);
+    					var div = this.parentElement;
+    					var ul = document.getElementById("unorderlist");
+    					ul.removeChild(ul.childNodes[Number(index)])
+
+				    }
+          });
+			}
+			i = 0
+			
+      });
+
+    </script>
+
+  </body>
+</html>

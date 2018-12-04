@@ -1,0 +1,182 @@
+*{
+    box-sizing: border - box;
+}
+
+body{
+    background-image: url("http://img.xqxtp.com/201601/21/13/5ufbjxgmwr3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 98%;
+}
+.mainBody{
+    height: 50%;
+    content: "";
+    display: table;
+    clear: both;
+}
+
+h1{
+    position: absolute;
+    top: 1%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    font-family: 'Monoton', cursive;
+    font-size: 5vmax;
+    text-align: center;
+    text-shadow: 3px 2px lightblue;
+    user-select: none;
+}
+
+#task{
+    position: absolute;
+    top: 15%;
+    left:2%;
+    width: 45%;
+    height: 40px;
+    margin: auto;
+    font-size: 20px;
+    border-radius: 5px;
+    border-style: none;
+    border-width: 5px;
+    box-shadow: 4px 4px lightblue;
+    transition: 0.5s;
+}
+#task:hover{
+    box-shadow: 4px 4px lightblue;
+}
+#task:focus{
+    outline-width: 0;
+}
+
+#task:valid{
+    padding-left: 100px;
+    font-family: 'Concert One', cursive;
+    font-weight: lighter;
+}
+#item{
+    position: absolute;
+    top: 22%;
+    left:25%;
+    width: 22%;
+    height: 40px;
+    margin: auto;
+    font-size: 20px;
+    border-radius: 5px;
+    border-style: none;
+    border-width: 5px;
+    box-shadow: 4px 4px lightblue;
+    transition: 0.5s;
+}
+#item:hover{
+    box-shadow: 4px 4px lightblue;
+}
+#item:focus{
+    outline-width: 0;
+}
+
+#item:valid{
+    padding-left: 100px;
+    font-family: 'Concert One', cursive;
+    font-weight: lighter;
+}
+#index{
+    position: absolute;
+    top: 22%;
+    left:2%;
+    width: 22%;
+    height: 40px;
+    margin: auto;
+    font-size: 20px;
+    border-radius: 5px;
+    border-style: none;
+    border-width: 5px;
+    box-shadow: 4px 4px lightblue;
+    transition: 0.5s;
+}
+#index:hover{
+    box-shadow: 4px 4px lightblue;
+}
+#index:focus{
+    outline-width: 0;
+}
+
+#index:valid{
+    padding-left: 100px;
+    font-family: 'Concert One', cursive;
+    font-weight: lighter;
+}
+#updateBtn{
+    position: absolute;
+    left: 48%;
+    height: 40px;
+    top: 22%;
+    width: 10%;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Monoton', cursive;
+    font-size: 15px;
+    font-weight: bolder;
+    background: #b3f0ff;
+    box-shadow: 3px 2px lightblue;
+    transition: 0.5s;
+    user-select: none;
+}
+#updateBtn:hover{
+    background: #00ccff;
+    box-shadow: 10px 10px lightblue;
+}
+
+#updateBtn:focus{
+    outline-width: 0;
+}
+
+#addBtn{
+    position: absolute;
+    left: 48%;
+    height: 40px;
+    top: 15%;
+    width: 10%;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Monoton', cursive;
+    font-size: 15px;
+    font-weight: bolder;
+    background: #b3f0ff;
+    box-shadow: 3px 2px lightblue;
+    transition: 0.5s;
+    user-select: none;
+}
+
+#addBtn:hover{
+    background: #00ccff;
+    box-shadow: 10px 10px rgb(139, 208, 231);
+}
+
+#addBtn:focus{
+    outline-width: 0;
+}
+#unorderlist{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 15px;
+}
+ul li{
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-left: 7%;
+    height: auto;
+    width: 50%;
+    user-select: none;
+    font-size: 4px;
+    font-family: 'Concert One', cursive;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.5;
+    text-align: center;
+    transition: 0.5s;
+}
+
+ul li:hover{
+    font-size: 30px;
+}

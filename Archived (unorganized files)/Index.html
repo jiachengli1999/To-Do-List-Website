@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+     <link href="https://fonts.googleapis.com/css?family=Concert+One|Monoton" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="todolistCSS.css">
+    </head>
+    <body>
+    <form>
+    <div class = "mainBody">
+        <h1>My to-do List</h1>
+        <input name = "thingstodo" type="text" id="tasks" placeholder="Daily task list...">
+        <!--Call the script Todo_list() when clicked on-->
+        <input  type="submit" id="push" value="Add toDo">
+    </div>
+    </form>
+    <!--An unordered list element that holds all tasks-->
+    <ul id = "unorderlist"></ul>
+    <script>
+    $(document).ready(function()
+    {
+        $.ajax({
+            type: "GET",
+            url:"/todo/read"})
+         .done( function(fetch)
+         {
+            $.each(fetch.data , function(index, item)
+            {
+                $("#unorderlist").append("<li>"+item+"</li>");
+            });
+         }
+         );
+
+         $("form").on("submit",function(event)
+         {
+            alert("stuff");
+              <!--this line of code above is unnecessary I was using this to test if the code gets to this step successfully-->
+            $.ajax({
+                data: {thingstodo: $("#tasks").val(),},
+                type: "POST",
+                url:"/todo/create"})
+            .done ( function(posted)
+            {
+                $("#unorderlist").append("<li>"+posted.result+"</li>");
+            });
+         });
+    });
+    </script>
+    </body>
+</html>

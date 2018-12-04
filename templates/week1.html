@@ -1,0 +1,43 @@
+<html>
+    <head>
+     <link href="https://fonts.googleapis.com/css?family=Concert+One|Monoton" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+    <div class = "mainBody">
+        <h1>My to-do List</h1>
+        <input type="text" id="tasks" placeholder="Daily task list...">
+        <!--Call the script Todo_list() when clicked on-->
+        <button onclick = "Todo_list()" type="button" id="push">Add Task</button>
+    </div>
+    <!--An unordered list element that holds all tasks-->
+    <ul id = "unorderlist"></ul>
+    <script>
+    function Todo_list(){
+        var li = document.createElement("li");
+        //grab the text within block
+        var task = document.getElementById("tasks").value;
+        var text = document.createTextNode(task);
+        li.appendChild(text);
+        //add the element with text added to the unordered list
+        document.getElementById("unorderlist").appendChild(li);
+       //reset the inputbox
+       document.getElementById("tasks").value = "";
+    }
+    //detect when user presses enter and connect that key with add task button
+    var input = document.getElementById("tasks");
+    input.addEventListener("keyup",function(event){
+        if (event.keyCode == 13){
+            document.getElementById("push").click();
+            }
+            });
+    //remove child when the element is selected
+    var list = document.querySelector("ul");
+    list.addEventListener('click', function (ev) {
+        if (ev.target.tagName ==='LI'){
+            list.removeChild(ev.target);
+        }
+    }, false);
+    </script>
+    </body>
+</html>

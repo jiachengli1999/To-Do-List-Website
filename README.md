@@ -1,3 +1,4 @@
+Note: server is no longer running 
 # Team Name
 MNJ carry
 
